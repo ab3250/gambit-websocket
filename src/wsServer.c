@@ -24,7 +24,6 @@ void ws_start (void){
     setbuf(stdout, NULL); 
     printf("Server Initialized!\n");  
     ws_socket(&evs, 8080, 0);
-    printf("debug3\n");
     return;
 }
 
