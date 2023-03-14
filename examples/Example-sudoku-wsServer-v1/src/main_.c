@@ -8247,7 +8247,6 @@
 "get-output-u8vector"
 "get-output-vector"
 "get_box_cells"
-"get_box_number"
 "get_col_cells"
 "get_row_cells"
 "getenv"
@@ -8269,6 +8268,7 @@
 "integer-length"
 "integer-nth-root"
 "integer-sqrt"
+"is_between_inc?"
 "keyword->string"
 "keyword-hash"
 "lcm"
@@ -16142,36 +16142,36 @@ ___DEF_SUB_NSTR(___X6,13UL)
                ___NSTR8(103,101,116,95,98,111,120,95)
                ___NSTR5(99,101,108,108,115)
 ___DEF_NEW_SYM_GLO_SUP(___S_gblFd,___S_get__box__cells,___X6,521268651,___G_get__box__cells)
-___DEF_SUB_NSTR(___X7,14UL)
-               ___NSTR8(103,101,116,95,98,111,120,95)
-               ___NSTR6(110,117,109,98,101,114)
-___DEF_NEW_SYM_GLO_SUP(___S_get__box__cells,___S_get__box__number,___X7,34685911,___G_get__box__number)
-___DEF_SUB_NSTR(___X8,13UL)
+___DEF_SUB_NSTR(___X7,13UL)
                ___NSTR8(103,101,116,95,99,111,108,95)
                ___NSTR5(99,101,108,108,115)
-___DEF_NEW_SYM_GLO_SUP(___S_get__box__number,___S_get__col__cells,___X8,398557720,___G_get__col__cells)
-___DEF_SUB_NSTR(___X9,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get__box__cells,___S_get__col__cells,___X7,398557720,___G_get__col__cells)
+___DEF_SUB_NSTR(___X8,13UL)
                ___NSTR8(103,101,116,95,114,111,119,95)
                ___NSTR5(99,101,108,108,115)
-___DEF_NEW_SYM_GLO_SUP(___S_get__col__cells,___S_get__row__cells,___X9,470365318,___G_get__row__cells)
-___DEF_SUB_NSTR(___X10,16UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get__col__cells,___S_get__row__cells,___X8,470365318,___G_get__row__cells)
+___DEF_SUB_NSTR(___X9,16UL)
                ___NSTR8(103,114,105,100,45,62,74,83)
                ___NSTR8(79,78,83,116,114,105,110,103)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_get__row__cells,___S_grid_2d__3e_JSONString,___X10,151351441,___G_grid_2d__3e_JSONString)
-___DEF_SUB_NSTR(___X11,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get__row__cells,___S_grid_2d__3e_JSONString,___X9,151351441,___G_grid_2d__3e_JSONString)
+___DEF_SUB_NSTR(___X10,5UL)
                ___NSTR5(103,114,105,100,49)
-___DEF_NEW_SYM_GLO_SUP(___S_grid_2d__3e_JSONString,___S_grid1,___X11,296675808,___G_grid1)
-___DEF_SUB_NSTR(___X12,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_grid_2d__3e_JSONString,___S_grid1,___X10,296675808,___G_grid1)
+___DEF_SUB_NSTR(___X11,5UL)
                ___NSTR5(103,114,105,100,50)
-___DEF_NEW_SYM_GLO_SUP(___S_grid1,___S_grid2,___X12,347008665,___G_grid2)
-___DEF_SUB_NSTR(___X13,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_grid1,___S_grid2,___X11,347008665,___G_grid2)
+___DEF_SUB_NSTR(___X12,5UL)
                ___NSTR5(103,114,105,100,51)
-___DEF_NEW_SYM_GLO_SUP(___S_grid2,___S_grid3,___X13,330231046,___G_grid3)
+___DEF_NEW_SYM_GLO_SUP(___S_grid2,___S_grid3,___X12,330231046,___G_grid3)
+___DEF_SUB_NSTR(___X13,15UL)
+               ___NSTR8(105,115,95,98,101,116,119,101)
+               ___NSTR7(101,110,95,105,110,99,63)
+___DEF_NEW_SYM_GLO_SUP(___S_grid3,___S_is__between__inc_3f_,___X13,419848002,___G_is__between__inc_3f_)
 ___DEF_SUB_NSTR(___X14,13UL)
                ___NSTR8(107,110,117,116,104,45,115,104)
                ___NSTR5(117,102,102,108,101)
-___DEF_NEW_SYM_GLO_SUP(___S_grid3,___S_knuth_2d_shuffle,___X14,13078047,___G_knuth_2d_shuffle)
+___DEF_NEW_SYM_GLO_SUP(___S_is__between__inc_3f_,___S_knuth_2d_shuffle,___X14,13078047,___G_knuth_2d_shuffle)
 ___DEF_SUB_NSTR(___X15,12UL)
                ___NSTR8(108,111,99,107,45,98,117,116)
                ___NSTR4(116,111,110,115)

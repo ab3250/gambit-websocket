@@ -124,11 +124,11 @@ c-declare-end
 
 (define (deck->JSONString deck)
     (let loop1 ((idx 0)(end (length deck))(str "["))  
-      (if (not(equal? idx end))
+      (if (not(= idx end))
           (loop1 
               (+ idx 1) 
               end 
-              (string-append str "\"" (list-ref deck idx) "\"" (if(not(equal? idx (- end 1))) "," "]") " "))
+              (string-append str "\"" (list-ref deck idx) "\"" (if(not(= idx (- end 1))) "," "]") " "))
               str)))
 
 (define (grid->JSONString grid)
@@ -192,37 +192,48 @@ c-declare-end
 
 (define (get_col_cells col)
       (vector col (+ col 9) (+ col 18) (+ col 27) (+ col 36) (+ col 45) (+ col 54) (+ col 63) (+ col 72)))
+;;;;;
 
-(define (get_box_cells row col)
-        (let ((box (get_box_number row col)))
-          (cond
-            ((= box 0)(vector 0 1 2 9 10 11 18 19 20))
-            ((= box 1)(vector 3 4 5 12 13 14 21 22 23))
-            ((= box 2)(vector 6 7 8 15 16 17 24 25 26))
-            ((= box 3)(vector 27 28 29 36 37 38 45 46 47))
-            ((= box 4)(vector 30 31 32 39 40 41 48 49 50))
-            ((= box 5)(vector 33 34 35 42 43 44 51 52 53))
-            ((= box 6)(vector 54 55 56 63 64 65 72 73 74))
-            ((= box 7)(vector 57 58 59 66 67 68 75 76 77))
-            ((= box 8)(vector 60 61 62 69 70 71 78 79 80)))))
-
-(define (get_box_number row col) 
+;;;;;
+(define (get_box_cells row col) 
       (cond 
-        ((or (= row 0) (= row 1) (= row 2))
+        ((is_between_inc? row 0 2)
           (cond 
-            ((or (= col 0) (= col 1) (= col 2)) 0)
-            ((or (= col 3) (= col 4) (= col 5)) 1)
-            ((or (= col 6) (= col 7) (= col 8)) 2)))
-        ((or(= row 3) (= row 4) (= row 5))
+            ((is_between_inc? col 0 2) (vector 0 1 2 9 10 11 18 19 20))
+            ((is_between_inc? col 3 5) (vector 3 4 5 12 13 14 21 22 23))
+            ((is_between_inc? col 6 8) (vector 6 7 8 15 16 17 24 25 26))))
+        ((is_between_inc? row 3 5)
           (cond
-            ((or (= col 0) (= col 1) (= col 2)) 3)
-            ((or (= col 3) (= col 4) (= col 5)) 4)
-            ((or (= col 6) (= col 7) (= col 8)) 5)))      
-        ((or (= row 6) (= row 7) (= row 8))
+            ((is_between_inc? col 0 2) (vector 27 28 29 36 37 38 45 46 47))
+            ((is_between_inc? col 3 5) (vector 30 31 32 39 40 41 48 49 50))
+            ((is_between_inc? col 6 8) (vector 33 34 35 42 43 44 51 52 53))))      
+        ((is_between_inc? row 6 8)
           (cond 
-            ((or (= col 0) (= col 1) (= col 2)) 6)
-            ((or (= col 3) (= col 4) (= col 5)) 7)
-            ((or (= col 6) (= col 7) (= col 8)) 8)))))
+            ((is_between_inc? col 0 2) (vector 54 55 56 63 64 65 72 73 74))
+            ((is_between_inc? col 3 5) (vector 57 58 59 66 67 68 75 76 77))
+            ((is_between_inc? col 6 8) (vector 60 61 62 69 70 71 78 79 80))))))
+
+(define (is_between_inc? val bot top)
+  (or (= val top)(= val bot)(and (< val top)(> val bot))))
+
+;;;;;
+; (define (get_box_number row col) 
+;       (cond 
+;         ((or (= row 0) (= row 1) (= row 2))
+;           (cond 
+;             ((or (= col 0) (= col 1) (= col 2)) 0)
+;             ((or (= col 3) (= col 4) (= col 5)) 1)
+;             ((or (= col 6) (= col 7) (= col 8)) 2)))
+;         ((or(= row 3) (= row 4) (= row 5))
+;           (cond
+;             ((or (= col 0) (= col 1) (= col 2)) 3)
+;             ((or (= col 3) (= col 4) (= col 5)) 4)
+;             ((or (= col 6) (= col 7) (= col 8)) 5)))      
+;         ((or (= row 6) (= row 7) (= row 8))
+;           (cond 
+;             ((or (= col 0) (= col 1) (= col 2)) 6)
+;             ((or (= col 3) (= col 4) (= col 5)) 7)
+;             ((or (= col 6) (= col 7) (= col 8)) 8)))))
 
 (define (print-grid grid)
     (newline)
