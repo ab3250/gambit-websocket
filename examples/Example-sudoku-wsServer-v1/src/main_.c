@@ -3464,6 +3464,7 @@
 "character-output-port"
 "character-port"
 "character-special"
+"check"
 "circular-list"
 "circular-list?"
 "clear-bit-field"
@@ -3552,6 +3553,7 @@
 "dead-end"
 "deadlock-exception"
 "deadlock-exception?"
+"deck->JSONString"
 "declare"
 "deeper-pair-tree"
 "default"
@@ -3602,6 +3604,7 @@
 "display-monoline-message"
 "display-multiline-message"
 "display-procedure-environment"
+"displayln"
 "divide-by-zero-exception"
 "divide-by-zero-exception-arguments"
 "divide-by-zero-exception-procedure"
@@ -3951,9 +3954,13 @@
 "get-output-string"
 "get-output-u8vector"
 "get-output-vector"
+"get_box_cells"
+"get_col_cells"
+"get_row_cells"
 "getenv"
 "gid"
 "goto"
+"grid->JSONString"
 "group"
 "group-info"
 "group-info-gid"
@@ -4090,6 +4097,7 @@
 "io-exception-handler"
 "iota"
 "is"
+"is_between_inc?"
 "j"
 "j2"
 "jazz"
@@ -4186,6 +4194,7 @@
 "local"
 "local-address"
 "local-port-number"
+"lock-buttons"
 "lock1"
 "lock2"
 "log"
@@ -4309,6 +4318,7 @@
 "no-such-file-or-directory-exception-arguments"
 "no-such-file-or-directory-exception-procedure"
 "no-such-file-or-directory-exception?"
+"no-zeros-left?"
 "noncontinuable-exception"
 "noncontinuable-exception-reason"
 "noncontinuable-exception?"
@@ -4355,6 +4365,9 @@
 "object-output-port"
 "object-port"
 "odd?"
+"onclose"
+"onmessage"
+"onopen"
 "open-binary-input-file"
 "open-binary-output-file"
 "open-directory"
@@ -4460,6 +4473,7 @@
 "port?"
 "position"
 "positive?"
+"possible?"
 "pp"
 "pred"
 "prefix"
@@ -4469,6 +4483,7 @@
 "prev-level"
 "primordial"
 "print"
+"print-grid"
 "println"
 "proc"
 "procedure"
@@ -4631,6 +4646,7 @@
 "round-quotient"
 "round-remainder"
 "round/"
+"row_col->cell"
 "rpath"
 "rpc-remote-error-exception"
 "rpc-remote-error-exception-arguments"
@@ -4875,6 +4891,7 @@
 "socket-info-port-number"
 "socket-info?"
 "socket-type"
+"solve"
 "source"
 "source1"
 "source2"
@@ -5338,6 +5355,7 @@
 "unknown-keyword-argument-exception?"
 "unknown-location"
 "unless"
+"unlock-buttons"
 "unquote"
 "unquote-keyword"
 "unquote-splicing"
@@ -8102,7 +8120,6 @@
 "digit-value"
 "directory-files"
 "display"
-"displayln"
 "dynamic-wind"
 "eighth"
 "eq?"
@@ -8278,7 +8295,6 @@
 "list->table"
 "list->vector"
 "list-ref"
-"list-set"
 "load"
 "log"
 "magnitude"
@@ -8338,13 +8354,11 @@
 "peek-u8"
 "port-settings-set!"
 "positive?"
-"possible?"
 "pp"
 "process-status"
 "protocol-info"
 "quotient"
 "random-f64vector"
-"random-integer"
 "random-source-state-set!"
 "random-u8vector"
 "rationalize"
@@ -8544,8 +8558,6 @@
 "write-substring"
 "write-subu8vector"
 "write-u8"
-"ws_sendframe_txt"
-"ws_start"
 "zero?"
 ) #|*/"*/"globals-s-d|#
 ( #|*/"*/"globals-s-nd|#
@@ -9540,6 +9552,7 @@
 "display-exception"
 "display-exception-in-context"
 "display-procedure-environment"
+"displayln"
 "divide-by-zero-exception-arguments"
 "divide-by-zero-exception-procedure"
 "divide-by-zero-exception?"
@@ -9684,7 +9697,6 @@
 "keyword-expected-exception-procedure"
 "keyword-expected-exception?"
 "keyword?"
-"knuth-shuffle"
 "last"
 "last-pair"
 "length-mismatch-exception-arg-id"
@@ -9704,6 +9716,7 @@
 "list->u64vector"
 "list->u8vector"
 "list-copy"
+"list-set"
 "list-set!"
 "list-sort"
 "list-sort!"
@@ -9821,6 +9834,7 @@
 "poll-point"
 "port-io-exception-handler-set!"
 "port?"
+"possible?"
 "pretty-print"
 "primordial-exception-handler"
 "print"
@@ -9841,6 +9855,7 @@
 "r7rs-raise-continuable"
 "r7rs-with-exception-handler"
 "raise"
+"random-integer"
 "random-real"
 "random-source-make-f64vectors"
 "random-source-make-integers"
@@ -10197,6 +10212,8 @@
 "wrong-number-of-values-exception-vals"
 "wrong-number-of-values-exception?"
 "wrong-processor-c-return-exception?"
+"ws_sendframe_txt"
+"ws_start"
 "xcons"
 ) #|*/"*/"globals-s-nd|#
 ( #|*/"*/"globals-ns|#
@@ -16168,68 +16185,64 @@ ___DEF_SUB_NSTR(___X13,15UL)
                ___NSTR8(105,115,95,98,101,116,119,101)
                ___NSTR7(101,110,95,105,110,99,63)
 ___DEF_NEW_SYM_GLO_SUP(___S_grid3,___S_is__between__inc_3f_,___X13,419848002,___G_is__between__inc_3f_)
-___DEF_SUB_NSTR(___X14,13UL)
-               ___NSTR8(107,110,117,116,104,45,115,104)
-               ___NSTR5(117,102,102,108,101)
-___DEF_NEW_SYM_GLO_SUP(___S_is__between__inc_3f_,___S_knuth_2d_shuffle,___X14,13078047,___G_knuth_2d_shuffle)
-___DEF_SUB_NSTR(___X15,12UL)
+___DEF_SUB_NSTR(___X14,12UL)
                ___NSTR8(108,111,99,107,45,98,117,116)
                ___NSTR4(116,111,110,115)
-___DEF_NEW_SYM_GLO_SUP(___S_knuth_2d_shuffle,___S_lock_2d_buttons,___X15,86892238,___G_lock_2d_buttons)
-___DEF_SUB_NSTR(___X16,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_is__between__inc_3f_,___S_lock_2d_buttons,___X14,86892238,___G_lock_2d_buttons)
+___DEF_SUB_NSTR(___X15,5UL)
                ___NSTR5(109,97,105,110,35)
-___DEF_NEW_SYM_GLO_SUP(___S_lock_2d_buttons,___S_main_23_,___X16,219417009,___G_main_23_)
-___DEF_SUB_NSTR(___X17,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_lock_2d_buttons,___S_main_23_,___X15,219417009,___G_main_23_)
+___DEF_SUB_NSTR(___X16,6UL)
                ___NSTR6(109,97,105,110,35,48)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_,___S_main_23_0,___X17,394982931,___G_main_23_0)
-___DEF_SUB_NSTR(___X18,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_main_23_,___S_main_23_0,___X16,394982931,___G_main_23_0)
+___DEF_SUB_NSTR(___X17,6UL)
                ___NSTR6(109,97,105,110,35,49)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_0,___S_main_23_1,___X18,378205312,___G_main_23_1)
-___DEF_SUB_NSTR(___X19,14UL)
+___DEF_NEW_SYM_GLO_SUP(___S_main_23_0,___S_main_23_1,___X17,378205312,___G_main_23_1)
+___DEF_SUB_NSTR(___X18,14UL)
                ___NSTR8(110,111,45,122,101,114,111,115)
                ___NSTR6(45,108,101,102,116,63)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_1,___S_no_2d_zeros_2d_left_3f_,___X19,438600019,___G_no_2d_zeros_2d_left_3f_)
-___DEF_SUB_NSTR(___X20,7UL)
+___DEF_NEW_SYM_GLO_SUP(___S_main_23_1,___S_no_2d_zeros_2d_left_3f_,___X18,438600019,___G_no_2d_zeros_2d_left_3f_)
+___DEF_SUB_NSTR(___X19,7UL)
                ___NSTR7(111,110,99,108,111,115,101)
-___DEF_NEW_SYM_GLO_SUP(___S_no_2d_zeros_2d_left_3f_,___S_onclose,___X20,248192084,___G_onclose)
-___DEF_SUB_NSTR(___X21,9UL)
+___DEF_NEW_SYM_GLO_SUP(___S_no_2d_zeros_2d_left_3f_,___S_onclose,___X19,248192084,___G_onclose)
+___DEF_SUB_NSTR(___X20,9UL)
                ___NSTR8(111,110,109,101,115,115,97,103)
                ___NSTR1(101)
-___DEF_NEW_SYM_GLO_SUP(___S_onclose,___S_onmessage,___X21,14049927,___G_onmessage)
-___DEF_SUB_NSTR(___X22,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_onclose,___S_onmessage,___X20,14049927,___G_onmessage)
+___DEF_SUB_NSTR(___X21,6UL)
                ___NSTR6(111,110,111,112,101,110)
-___DEF_NEW_SYM_GLO_SUP(___S_onmessage,___S_onopen,___X22,525513944,___G_onopen)
-___DEF_SUB_NSTR(___X23,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_onmessage,___S_onopen,___X21,525513944,___G_onopen)
+___DEF_SUB_NSTR(___X22,6UL)
                ___NSTR6(111,112,101,110,101,100)
-___DEF_NEW_SYM_GLO(___S_onopen,___S_opened,___X23,149973472,___G_opened)
-___DEF_SUB_NSTR(___X24,9UL)
+___DEF_NEW_SYM_GLO(___S_onopen,___S_opened,___X22,149973472,___G_opened)
+___DEF_SUB_NSTR(___X23,9UL)
                ___NSTR8(112,111,115,115,105,98,108,101)
                ___NSTR1(63)
-___DEF_NEW_SYM_GLO_SUP(___S_opened,___S_possible_3f_,___X24,237918607,___G_possible_3f_)
-___DEF_SUB_NSTR(___X25,10UL)
+___DEF_NEW_SYM_GLO_SUP(___S_opened,___S_possible_3f_,___X23,237918607,___G_possible_3f_)
+___DEF_SUB_NSTR(___X24,10UL)
                ___NSTR8(112,114,105,110,116,45,103,114)
                ___NSTR2(105,100)
-___DEF_NEW_SYM_GLO_SUP(___S_possible_3f_,___S_print_2d_grid,___X25,223353171,___G_print_2d_grid)
-___DEF_SUB_NSTR(___X26,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_possible_3f_,___S_print_2d_grid,___X24,223353171,___G_print_2d_grid)
+___DEF_SUB_NSTR(___X25,13UL)
                ___NSTR8(114,111,119,95,99,111,108,45)
                ___NSTR5(62,99,101,108,108)
-___DEF_NEW_SYM_GLO_SUP(___S_print_2d_grid,___S_row__col_2d__3e_cell,___X26,321489397,___G_row__col_2d__3e_cell)
-___DEF_SUB_NSTR(___X27,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_print_2d_grid,___S_row__col_2d__3e_cell,___X25,321489397,___G_row__col_2d__3e_cell)
+___DEF_SUB_NSTR(___X26,5UL)
                ___NSTR5(115,111,108,118,101)
-___DEF_NEW_SYM_GLO_SUP(___S_row__col_2d__3e_cell,___S_solve,___X27,40186928,___G_solve)
-___DEF_SUB_NSTR(___X28,14UL)
+___DEF_NEW_SYM_GLO_SUP(___S_row__col_2d__3e_cell,___S_solve,___X26,40186928,___G_solve)
+___DEF_SUB_NSTR(___X27,14UL)
                ___NSTR8(117,110,108,111,99,107,45,98)
                ___NSTR6(117,116,116,111,110,115)
-___DEF_NEW_SYM_GLO_SUP(___S_solve,___S_unlock_2d_buttons,___X28,99368765,___G_unlock_2d_buttons)
-___DEF_SUB_NSTR(___X29,16UL)
+___DEF_NEW_SYM_GLO_SUP(___S_solve,___S_unlock_2d_buttons,___X27,99368765,___G_unlock_2d_buttons)
+___DEF_SUB_NSTR(___X28,16UL)
                ___NSTR8(119,115,95,115,101,110,100,102)
                ___NSTR8(114,97,109,101,95,116,120,116)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_unlock_2d_buttons,___S_ws__sendframe__txt,___X29,495545544,___G_ws__sendframe__txt)
-___DEF_SUB_NSTR(___X30,8UL)
+___DEF_NEW_SYM_GLO_SUP(___S_unlock_2d_buttons,___S_ws__sendframe__txt,___X28,495545544,___G_ws__sendframe__txt)
+___DEF_SUB_NSTR(___X29,8UL)
                ___NSTR8(119,115,95,115,116,97,114,116)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_ws__sendframe__txt,___S_ws__start,___X30,227104956,___G_ws__start)
+___DEF_NEW_SYM_GLO_SUP(___S_ws__sendframe__txt,___S_ws__start,___X29,227104956,___G_ws__start)
 ___END_NEW_SYM_GLO(___S_ws__start,0)
 
 #endif

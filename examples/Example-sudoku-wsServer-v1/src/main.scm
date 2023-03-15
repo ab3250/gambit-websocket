@@ -8,11 +8,9 @@ c-declare-end
 (import
   (scheme base)
   (scheme write)
-  (gambit)
-  ;(ws-macro-lib)
-  )
-
-(define gblFd 1)
+  (gambit))
+  (include "wslib.sld")
+  
 
 (define  ws_sendframe_txt (c-lambda (int char-string bool) int "ws_sendframe_txt"))
 
@@ -25,9 +23,7 @@ c-declare-end
     ((string=? msg "button3")(solve (vector-copy grid3)))
     ((string=? msg "button4")(ws_sendframe_txt gblFd  (grid->JSONString grid1) #f))
     ((string=? msg "button5")(ws_sendframe_txt gblFd  (grid->JSONString grid2) #f))
-    ((string=? msg "button6")(ws_sendframe_txt gblFd  (grid->JSONString grid3) #f))) 
-    
-  )
+    ((string=? msg "button6")(ws_sendframe_txt gblFd  (grid->JSONString grid3) #f))))
 
 (c-define (onopen fd) (int) void "onopen" "extern"
            (set! gblFd fd)
@@ -39,41 +35,43 @@ c-declare-end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define gblFd 1)
 
-(define grid1 (list->vector
-     (append
-       '(5 3 0 0 7 0 0 0 0)
-       '(6 0 0 1 9 5 0 0 0)
-       '(0 9 8 0 0 0 0 6 0)
-       '(8 0 0 0 6 0 0 0 3)
-       '(4 0 0 8 0 3 0 0 1)
-       '(7 0 0 0 2 0 0 0 6)
-       '(0 6 0 0 0 0 2 8 0)
-       '(0 0 0 4 1 9 0 0 5)
-       '(0 0 0 0 8 0 0 7 9))))
 
-  (define grid2 (list->vector
-    (append
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 1 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 2 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0))))
 
-  (define grid3 (list->vector
-    (append
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0)
-      '(0 0 0 0 0 0 0 0 0))))
+; (define grid1 (list->vector
+;      (append
+;        '(5 3 0 0 7 0 0 0 0)
+;        '(6 0 0 1 9 5 0 0 0)
+;        '(0 9 8 0 0 0 0 6 0)
+;        '(8 0 0 0 6 0 0 0 3)
+;        '(4 0 0 8 0 3 0 0 1)
+;        '(7 0 0 0 2 0 0 0 6)
+;        '(0 6 0 0 0 0 2 8 0)
+;        '(0 0 0 4 1 9 0 0 5)
+;        '(0 0 0 0 8 0 0 7 9))))
+
+;   (define grid2 (list->vector
+;     (append
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 1 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 2 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0))))
+
+;   (define grid3 (list->vector
+;     (append
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0)
+;       '(0 0 0 0 0 0 0 0 0))))
 
 (define-syntax nested-loop
   (syntax-rules ()
@@ -101,26 +99,15 @@ c-declare-end
  (syntax-rules ()
    ((unless test . body)
     (when (not test) . body))))
-    
-(define (knuth-shuffle lst-org)  
-  (let loop ((count (length lst-org)) (lst lst-org))      
-    (if (zero? count)
-    	lst
-	(let*   ((j (random-integer count))
-		 (new-count (- count 1))
-	         (tmp (list-ref lst new-count))
-	         (lst2 (list-set lst new-count (list-ref lst j)))
-	         (lst3 (list-set lst2 j tmp)))	         
-	         (loop new-count lst3)))))
 
-(define (list-set lst idx val)
-  (if (null? lst)
-    lst
-    (cons
-      (if (zero? idx)
-        val
-        (car lst))
-      (list-set (cdr lst) (- idx 1) val))))
+; (define (list-set lst idx val)
+;   (if (null? lst)
+;     lst
+;     (cons
+;       (if (zero? idx)
+;         val
+;         (car lst))
+;       (list-set (cdr lst) (- idx 1) val))))
 
 (define (deck->JSONString deck)
     (let loop1 ((idx 0)(end (length deck))(str "["))  
@@ -165,7 +152,7 @@ c-declare-end
                     (vector-set! grid (row_col->cell row col) num)                    
                     (ws_sendframe_txt gblFd (grid->JSONString grid) false)
                     (solve grid)
-                    (when (no-zeros-left? grid)(return))
+                    (when (no-zeros-left? grid) (return))
                     (vector-set! grid (row_col->cell row col) 0)))
                 (num-loop (+ 1 num)))
               (return)))))))
@@ -176,7 +163,6 @@ c-declare-end
           #f
           (if (not (= cell 8)) (loop (+ cell 1)) #t))))
 
-
 (define (no-zeros-left? grid)
     (let ((length (- (vector-length grid) 1)))
       (let loop ((count 0)) 
@@ -186,54 +172,60 @@ c-declare-end
           (loop (+ count 1))
           #t)))))
 
-(define (get_row_cells row)
-      (let loop ((start (* row 9)))
-        (vector start (+ start 1) (+ start 2) (+ start 3) (+ start 4) (+ start 5) (+ start 6) (+ start 7) (+ start 8))))
+;(define (get_row_cells row)
+;      (let loop ((start (* row 9)))
+;        (vector start (+ start 1) (+ start 2) (+ start 3) (+ start 4) (+ start 5) (+ start 6) (+ start 7) (+ start 8))))
+
+;(define (get_col_cells col)
+;      (vector col (+ col 9) (+ col 18) (+ col 27) (+ col 36) (+ col 45) (+ col 54) (+ col 63) (+ col 72)))
+
+ (define (get_row_cells row)
+  (let ((rows #(
+    #(0 1 2 3 4 5 6 7 8)
+    #(9 10 11 12 13 14 15 16 17)
+    #(18 19 20 21 22 23 24 25 26)
+    #(27 28 29 30 31 32 33 34 35)
+    #(36 37 38 39 40 41 42 43 44)
+    #(45 46 47 48 49 50 51 52 53)
+    #(54 55 56 57 58 59 60 61 62)
+    #(63 64 65 66 67 68 69 70 71)
+    #(72 73 74 75 76 77 78 79 80))))
+    (vector-ref rows row)))
 
 (define (get_col_cells col)
-      (vector col (+ col 9) (+ col 18) (+ col 27) (+ col 36) (+ col 45) (+ col 54) (+ col 63) (+ col 72)))
-;;;;;
+  (let ((cols #(
+    #(0 9 18 27 36 45 54 63 72)
+    #(1 10 19 28 37 46 55 64 73)
+    #(2 11 20 29 38 47 56 65 74)
+    #(3 12 21 30 39 48 57 66 75)
+    #(4 13 22 31 40 49 58 67 76)
+    #(5 14 23 32 41 50 59 68 77)
+    #(6 15 24 33 42 51 60 69 78)
+    #(7 16 25 34 43 52 61 70 79)
+    #(8 17 26 35 44 53 62 71 80))))
+    (vector-ref cols col)))
 
-;;;;;
+
 (define (get_box_cells row col) 
       (cond 
         ((is_between_inc? row 0 2)
           (cond 
-            ((is_between_inc? col 0 2) (vector 0 1 2 9 10 11 18 19 20))
-            ((is_between_inc? col 3 5) (vector 3 4 5 12 13 14 21 22 23))
-            ((is_between_inc? col 6 8) (vector 6 7 8 15 16 17 24 25 26))))
+            ((is_between_inc? col 0 2) #(0 1 2 9 10 11 18 19 20))
+            ((is_between_inc? col 3 5) #(3 4 5 12 13 14 21 22 23))
+            ((is_between_inc? col 6 8) #(6 7 8 15 16 17 24 25 26))))
         ((is_between_inc? row 3 5)
           (cond
-            ((is_between_inc? col 0 2) (vector 27 28 29 36 37 38 45 46 47))
-            ((is_between_inc? col 3 5) (vector 30 31 32 39 40 41 48 49 50))
-            ((is_between_inc? col 6 8) (vector 33 34 35 42 43 44 51 52 53))))      
+            ((is_between_inc? col 0 2) #(27 28 29 36 37 38 45 46 47))
+            ((is_between_inc? col 3 5) #(30 31 32 39 40 41 48 49 50))
+            ((is_between_inc? col 6 8) #(33 34 35 42 43 44 51 52 53))))      
         ((is_between_inc? row 6 8)
           (cond 
-            ((is_between_inc? col 0 2) (vector 54 55 56 63 64 65 72 73 74))
-            ((is_between_inc? col 3 5) (vector 57 58 59 66 67 68 75 76 77))
-            ((is_between_inc? col 6 8) (vector 60 61 62 69 70 71 78 79 80))))))
+            ((is_between_inc? col 0 2) #(54 55 56 63 64 65 72 73 74))
+            ((is_between_inc? col 3 5) #(57 58 59 66 67 68 75 76 77))
+            ((is_between_inc? col 6 8) #(60 61 62 69 70 71 78 79 80))))))
 
 (define (is_between_inc? val bot top)
-  (or (= val top)(= val bot)(and (< val top)(> val bot))))
-
-;;;;;
-; (define (get_box_number row col) 
-;       (cond 
-;         ((or (= row 0) (= row 1) (= row 2))
-;           (cond 
-;             ((or (= col 0) (= col 1) (= col 2)) 0)
-;             ((or (= col 3) (= col 4) (= col 5)) 1)
-;             ((or (= col 6) (= col 7) (= col 8)) 2)))
-;         ((or(= row 3) (= row 4) (= row 5))
-;           (cond
-;             ((or (= col 0) (= col 1) (= col 2)) 3)
-;             ((or (= col 3) (= col 4) (= col 5)) 4)
-;             ((or (= col 6) (= col 7) (= col 8)) 5)))      
-;         ((or (= row 6) (= row 7) (= row 8))
-;           (cond 
-;             ((or (= col 0) (= col 1) (= col 2)) 6)
-;             ((or (= col 3) (= col 4) (= col 5)) 7)
-;             ((or (= col 6) (= col 7) (= col 8)) 8)))))
+  (and (< val (+ top 1))(> val (- bot 1))))
 
 (define (print-grid grid)
     (newline)
@@ -250,8 +242,6 @@ c-declare-end
        (check (get_col_cells col) num grid)
        (check (get_box_cells row col) num grid)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  
- 
 
 (ws_start)
 
