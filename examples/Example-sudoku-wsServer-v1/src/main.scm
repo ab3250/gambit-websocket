@@ -10,7 +10,6 @@ c-declare-end
   (scheme write)
   (gambit))
   (include "wslib.sld")
-  
 
 (define  ws_sendframe_txt (c-lambda (int char-string bool) int "ws_sendframe_txt"))
 
@@ -36,69 +35,6 @@ c-declare-end
 (define gblFd 1)
 
 
-
-; (define grid1 (list->vector
-;      (append
-;        '(5 3 0 0 7 0 0 0 0)
-;        '(6 0 0 1 9 5 0 0 0)
-;        '(0 9 8 0 0 0 0 6 0)
-;        '(8 0 0 0 6 0 0 0 3)
-;        '(4 0 0 8 0 3 0 0 1)
-;        '(7 0 0 0 2 0 0 0 6)
-;        '(0 6 0 0 0 0 2 8 0)
-;        '(0 0 0 4 1 9 0 0 5)
-;        '(0 0 0 0 8 0 0 7 9))))
-
-;   (define grid2 (list->vector
-;     (append
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 1 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 2 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0))))
-
-;   (define grid3 (list->vector
-;     (append
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0)
-;       '(0 0 0 0 0 0 0 0 0))))
-
-(define-syntax nested-loop
-  (syntax-rules ()
-    ((_ l1 l1-start l1-end l2 l2-start l2-end body ...)
-         (for l1-start l1-end (lambda(l1)
-		    (for l2-start l2-end (lambda(l2)
-			       (begin
-				body ... ))))))))
-
-(define for (lambda (start end func)
-     (let loop ((index start))
-        (if (> index end) #t
-          (begin
-            (func index)
-            (loop (+ index 1)))))))
-				
-(define-syntax let/ec 
-  (syntax-rules ()
-    ((_ return body ...)
-     (call-with-current-continuation
-      (lambda (return)
-        body ...)))))
-
-(define-syntax unless
- (syntax-rules ()
-   ((unless test . body)
-    (when (not test) . body))))
 
 ; (define (list-set lst idx val)
 ;   (if (null? lst)
