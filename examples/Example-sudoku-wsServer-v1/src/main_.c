@@ -5,7 +5,7 @@
 (C)
 "main_"
 ("_kernel" "_system" "_num" "_std" "_eval" "_module" "_io" "_nonstd" "_thread" "_repl" "main")
-()
+("ablibs/macrolib")
 (("_kernel" (preload . #t)) ("_system" (preload . #t)) ("_num" (preload . #t)) ("_std" (preload . #t)) ("_eval" (preload . #t)) ("_module" (preload . #t)) ("_io" (preload . #t)) ("_nonstd" (preload . #t)) ("_thread" (preload . #t)) ("_repl" (preload . #t)) ("main"))
 ( #|*/"*/"symbols|#
 ""
@@ -3244,6 +3244,7 @@
 "abandoned"
 "abandoned-mutex-exception"
 "abandoned-mutex-exception?"
+"ablibs/macrolib"
 "abort"
 "abs"
 "absrel-time"
@@ -8203,7 +8204,6 @@
 "fltanh"
 "fltruncate"
 "flzero?"
-"for"
 "force-output"
 "foreign-release!"
 "fourth"
@@ -8354,6 +8354,7 @@
 "peek-u8"
 "port-settings-set!"
 "positive?"
+"possible?"
 "pp"
 "process-status"
 "protocol-info"
@@ -9834,7 +9835,6 @@
 "poll-point"
 "port-io-exception-handler-set!"
 "port?"
-"possible?"
 "pretty-print"
 "primordial-exception-handler"
 "print"
@@ -10217,8 +10217,14 @@
 "xcons"
 ) #|*/"*/"globals-s-nd|#
 ( #|*/"*/"globals-ns|#
+"col"
 "false"
 "fifoOut"
+"for"
+"let/ec"
+"nested-loop"
+"return"
+"row"
 ) #|*/"*/"globals-ns|#
 ( #|*/"*/"meta-info|#
 ) #|*/"*/"meta-info|#
@@ -16134,115 +16140,132 @@ ___DEF_OLD_SYM_GLO(___S__7b__2e__2e__2e__7d_,___G__7b__2e__2e__2e__7d_)
 ___END_OLD_SYM_GLO
 
 ___BEGIN_NEW_SYM_GLO
-___DEF_SUB_NSTR(___X0,5UL)
+___DEF_SUB_NSTR(___X0,15UL)
+               ___NSTR8(97,98,108,105,98,115,47,109)
+               ___NSTR7(97,99,114,111,108,105,98)
+___DEF_NEW_SYM_GLO(0,___S_ablibs_2f_macrolib,___X0,83214960,___G_ablibs_2f_macrolib)
+___DEF_SUB_NSTR(___X1,5UL)
                ___NSTR5(99,104,101,99,107)
-___DEF_NEW_SYM_GLO_SUP(0,___S_check,___X0,326179911,___G_check)
-___DEF_SUB_NSTR(___X1,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_ablibs_2f_macrolib,___S_check,___X1,326179911,___G_check)
+___DEF_SUB_NSTR(___X2,6UL)
                ___NSTR6(99,108,111,115,101,100)
-___DEF_NEW_SYM_GLO(___S_check,___S_closed,___X1,200167621,___G_closed)
-___DEF_SUB_NSTR(___X2,16UL)
+___DEF_NEW_SYM_GLO(___S_check,___S_closed,___X2,200167621,___G_closed)
+___DEF_SUB_NSTR(___X3,3UL)
+               ___NSTR3(99,111,108)
+___DEF_NEW_SYM_GLO(___S_closed,___S_col,___X3,311284849,___G_col)
+___DEF_SUB_NSTR(___X4,16UL)
                ___NSTR8(100,101,99,107,45,62,74,83)
                ___NSTR8(79,78,83,116,114,105,110,103)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_closed,___S_deck_2d__3e_JSONString,___X2,305567580,___G_deck_2d__3e_JSONString)
-___DEF_SUB_NSTR(___X3,9UL)
+___DEF_NEW_SYM_GLO_SUP(___S_col,___S_deck_2d__3e_JSONString,___X4,305567580,___G_deck_2d__3e_JSONString)
+___DEF_SUB_NSTR(___X5,9UL)
                ___NSTR8(100,105,115,112,108,97,121,108)
                ___NSTR1(110)
-___DEF_NEW_SYM_GLO_SUP(___S_deck_2d__3e_JSONString,___S_displayln,___X3,391612943,___G_displayln)
-___DEF_SUB_NSTR(___X4,7UL)
+___DEF_NEW_SYM_GLO_SUP(___S_deck_2d__3e_JSONString,___S_displayln,___X5,391612943,___G_displayln)
+___DEF_SUB_NSTR(___X6,7UL)
                ___NSTR7(102,105,102,111,79,117,116)
-___DEF_NEW_SYM_GLO(___S_displayln,___S_fifoOut,___X4,222417737,___G_fifoOut)
-___DEF_SUB_NSTR(___X5,5UL)
+___DEF_NEW_SYM_GLO(___S_displayln,___S_fifoOut,___X6,222417737,___G_fifoOut)
+___DEF_SUB_NSTR(___X7,5UL)
                ___NSTR5(103,98,108,70,100)
-___DEF_NEW_SYM_GLO_SUP(___S_fifoOut,___S_gblFd,___X5,415970914,___G_gblFd)
-___DEF_SUB_NSTR(___X6,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_fifoOut,___S_gblFd,___X7,415970914,___G_gblFd)
+___DEF_SUB_NSTR(___X8,13UL)
                ___NSTR8(103,101,116,95,98,111,120,95)
                ___NSTR5(99,101,108,108,115)
-___DEF_NEW_SYM_GLO_SUP(___S_gblFd,___S_get__box__cells,___X6,521268651,___G_get__box__cells)
-___DEF_SUB_NSTR(___X7,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_gblFd,___S_get__box__cells,___X8,521268651,___G_get__box__cells)
+___DEF_SUB_NSTR(___X9,13UL)
                ___NSTR8(103,101,116,95,99,111,108,95)
                ___NSTR5(99,101,108,108,115)
-___DEF_NEW_SYM_GLO_SUP(___S_get__box__cells,___S_get__col__cells,___X7,398557720,___G_get__col__cells)
-___DEF_SUB_NSTR(___X8,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get__box__cells,___S_get__col__cells,___X9,398557720,___G_get__col__cells)
+___DEF_SUB_NSTR(___X10,13UL)
                ___NSTR8(103,101,116,95,114,111,119,95)
                ___NSTR5(99,101,108,108,115)
-___DEF_NEW_SYM_GLO_SUP(___S_get__col__cells,___S_get__row__cells,___X8,470365318,___G_get__row__cells)
-___DEF_SUB_NSTR(___X9,16UL)
+___DEF_NEW_SYM_GLO_SUP(___S_get__col__cells,___S_get__row__cells,___X10,470365318,___G_get__row__cells)
+___DEF_SUB_NSTR(___X11,16UL)
                ___NSTR8(103,114,105,100,45,62,74,83)
                ___NSTR8(79,78,83,116,114,105,110,103)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_get__row__cells,___S_grid_2d__3e_JSONString,___X9,151351441,___G_grid_2d__3e_JSONString)
-___DEF_SUB_NSTR(___X10,5UL)
-               ___NSTR5(103,114,105,100,49)
-___DEF_NEW_SYM_GLO_SUP(___S_grid_2d__3e_JSONString,___S_grid1,___X10,296675808,___G_grid1)
-___DEF_SUB_NSTR(___X11,5UL)
-               ___NSTR5(103,114,105,100,50)
-___DEF_NEW_SYM_GLO_SUP(___S_grid1,___S_grid2,___X11,347008665,___G_grid2)
+___DEF_NEW_SYM_GLO_SUP(___S_get__row__cells,___S_grid_2d__3e_JSONString,___X11,151351441,___G_grid_2d__3e_JSONString)
 ___DEF_SUB_NSTR(___X12,5UL)
+               ___NSTR5(103,114,105,100,49)
+___DEF_NEW_SYM_GLO_SUP(___S_grid_2d__3e_JSONString,___S_grid1,___X12,296675808,___G_grid1)
+___DEF_SUB_NSTR(___X13,5UL)
+               ___NSTR5(103,114,105,100,50)
+___DEF_NEW_SYM_GLO_SUP(___S_grid1,___S_grid2,___X13,347008665,___G_grid2)
+___DEF_SUB_NSTR(___X14,5UL)
                ___NSTR5(103,114,105,100,51)
-___DEF_NEW_SYM_GLO_SUP(___S_grid2,___S_grid3,___X12,330231046,___G_grid3)
-___DEF_SUB_NSTR(___X13,15UL)
+___DEF_NEW_SYM_GLO_SUP(___S_grid2,___S_grid3,___X14,330231046,___G_grid3)
+___DEF_SUB_NSTR(___X15,15UL)
                ___NSTR8(105,115,95,98,101,116,119,101)
                ___NSTR7(101,110,95,105,110,99,63)
-___DEF_NEW_SYM_GLO_SUP(___S_grid3,___S_is__between__inc_3f_,___X13,419848002,___G_is__between__inc_3f_)
-___DEF_SUB_NSTR(___X14,12UL)
+___DEF_NEW_SYM_GLO_SUP(___S_grid3,___S_is__between__inc_3f_,___X15,419848002,___G_is__between__inc_3f_)
+___DEF_SUB_NSTR(___X16,6UL)
+               ___NSTR6(108,101,116,47,101,99)
+___DEF_NEW_SYM_GLO(___S_is__between__inc_3f_,___S_let_2f_ec,___X16,185266887,___G_let_2f_ec)
+___DEF_SUB_NSTR(___X17,12UL)
                ___NSTR8(108,111,99,107,45,98,117,116)
                ___NSTR4(116,111,110,115)
-___DEF_NEW_SYM_GLO_SUP(___S_is__between__inc_3f_,___S_lock_2d_buttons,___X14,86892238,___G_lock_2d_buttons)
-___DEF_SUB_NSTR(___X15,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_let_2f_ec,___S_lock_2d_buttons,___X17,86892238,___G_lock_2d_buttons)
+___DEF_SUB_NSTR(___X18,5UL)
                ___NSTR5(109,97,105,110,35)
-___DEF_NEW_SYM_GLO_SUP(___S_lock_2d_buttons,___S_main_23_,___X15,219417009,___G_main_23_)
-___DEF_SUB_NSTR(___X16,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_lock_2d_buttons,___S_main_23_,___X18,219417009,___G_main_23_)
+___DEF_SUB_NSTR(___X19,6UL)
                ___NSTR6(109,97,105,110,35,48)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_,___S_main_23_0,___X16,394982931,___G_main_23_0)
-___DEF_SUB_NSTR(___X17,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_main_23_,___S_main_23_0,___X19,394982931,___G_main_23_0)
+___DEF_SUB_NSTR(___X20,6UL)
                ___NSTR6(109,97,105,110,35,49)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_0,___S_main_23_1,___X17,378205312,___G_main_23_1)
-___DEF_SUB_NSTR(___X18,14UL)
+___DEF_NEW_SYM_GLO_SUP(___S_main_23_0,___S_main_23_1,___X20,378205312,___G_main_23_1)
+___DEF_SUB_NSTR(___X21,11UL)
+               ___NSTR8(110,101,115,116,101,100,45,108)
+               ___NSTR3(111,111,112)
+___DEF_NEW_SYM_GLO(___S_main_23_1,___S_nested_2d_loop,___X21,475524043,___G_nested_2d_loop)
+___DEF_SUB_NSTR(___X22,14UL)
                ___NSTR8(110,111,45,122,101,114,111,115)
                ___NSTR6(45,108,101,102,116,63)
-___DEF_NEW_SYM_GLO_SUP(___S_main_23_1,___S_no_2d_zeros_2d_left_3f_,___X18,438600019,___G_no_2d_zeros_2d_left_3f_)
-___DEF_SUB_NSTR(___X19,7UL)
+___DEF_NEW_SYM_GLO_SUP(___S_nested_2d_loop,___S_no_2d_zeros_2d_left_3f_,___X22,438600019,___G_no_2d_zeros_2d_left_3f_)
+___DEF_SUB_NSTR(___X23,7UL)
                ___NSTR7(111,110,99,108,111,115,101)
-___DEF_NEW_SYM_GLO_SUP(___S_no_2d_zeros_2d_left_3f_,___S_onclose,___X19,248192084,___G_onclose)
-___DEF_SUB_NSTR(___X20,9UL)
+___DEF_NEW_SYM_GLO_SUP(___S_no_2d_zeros_2d_left_3f_,___S_onclose,___X23,248192084,___G_onclose)
+___DEF_SUB_NSTR(___X24,9UL)
                ___NSTR8(111,110,109,101,115,115,97,103)
                ___NSTR1(101)
-___DEF_NEW_SYM_GLO_SUP(___S_onclose,___S_onmessage,___X20,14049927,___G_onmessage)
-___DEF_SUB_NSTR(___X21,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_onclose,___S_onmessage,___X24,14049927,___G_onmessage)
+___DEF_SUB_NSTR(___X25,6UL)
                ___NSTR6(111,110,111,112,101,110)
-___DEF_NEW_SYM_GLO_SUP(___S_onmessage,___S_onopen,___X21,525513944,___G_onopen)
-___DEF_SUB_NSTR(___X22,6UL)
+___DEF_NEW_SYM_GLO_SUP(___S_onmessage,___S_onopen,___X25,525513944,___G_onopen)
+___DEF_SUB_NSTR(___X26,6UL)
                ___NSTR6(111,112,101,110,101,100)
-___DEF_NEW_SYM_GLO(___S_onopen,___S_opened,___X22,149973472,___G_opened)
-___DEF_SUB_NSTR(___X23,9UL)
+___DEF_NEW_SYM_GLO(___S_onopen,___S_opened,___X26,149973472,___G_opened)
+___DEF_SUB_NSTR(___X27,9UL)
                ___NSTR8(112,111,115,115,105,98,108,101)
                ___NSTR1(63)
-___DEF_NEW_SYM_GLO_SUP(___S_opened,___S_possible_3f_,___X23,237918607,___G_possible_3f_)
-___DEF_SUB_NSTR(___X24,10UL)
+___DEF_NEW_SYM_GLO_SUP(___S_opened,___S_possible_3f_,___X27,237918607,___G_possible_3f_)
+___DEF_SUB_NSTR(___X28,10UL)
                ___NSTR8(112,114,105,110,116,45,103,114)
                ___NSTR2(105,100)
-___DEF_NEW_SYM_GLO_SUP(___S_possible_3f_,___S_print_2d_grid,___X24,223353171,___G_print_2d_grid)
-___DEF_SUB_NSTR(___X25,13UL)
+___DEF_NEW_SYM_GLO_SUP(___S_possible_3f_,___S_print_2d_grid,___X28,223353171,___G_print_2d_grid)
+___DEF_SUB_NSTR(___X29,3UL)
+               ___NSTR3(114,111,119)
+___DEF_NEW_SYM_GLO(___S_print_2d_grid,___S_row,___X29,68033915,___G_row)
+___DEF_SUB_NSTR(___X30,13UL)
                ___NSTR8(114,111,119,95,99,111,108,45)
                ___NSTR5(62,99,101,108,108)
-___DEF_NEW_SYM_GLO_SUP(___S_print_2d_grid,___S_row__col_2d__3e_cell,___X25,321489397,___G_row__col_2d__3e_cell)
-___DEF_SUB_NSTR(___X26,5UL)
+___DEF_NEW_SYM_GLO_SUP(___S_row,___S_row__col_2d__3e_cell,___X30,321489397,___G_row__col_2d__3e_cell)
+___DEF_SUB_NSTR(___X31,5UL)
                ___NSTR5(115,111,108,118,101)
-___DEF_NEW_SYM_GLO_SUP(___S_row__col_2d__3e_cell,___S_solve,___X26,40186928,___G_solve)
-___DEF_SUB_NSTR(___X27,14UL)
+___DEF_NEW_SYM_GLO_SUP(___S_row__col_2d__3e_cell,___S_solve,___X31,40186928,___G_solve)
+___DEF_SUB_NSTR(___X32,14UL)
                ___NSTR8(117,110,108,111,99,107,45,98)
                ___NSTR6(117,116,116,111,110,115)
-___DEF_NEW_SYM_GLO_SUP(___S_solve,___S_unlock_2d_buttons,___X27,99368765,___G_unlock_2d_buttons)
-___DEF_SUB_NSTR(___X28,16UL)
+___DEF_NEW_SYM_GLO_SUP(___S_solve,___S_unlock_2d_buttons,___X32,99368765,___G_unlock_2d_buttons)
+___DEF_SUB_NSTR(___X33,16UL)
                ___NSTR8(119,115,95,115,101,110,100,102)
                ___NSTR8(114,97,109,101,95,116,120,116)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_unlock_2d_buttons,___S_ws__sendframe__txt,___X28,495545544,___G_ws__sendframe__txt)
-___DEF_SUB_NSTR(___X29,8UL)
+___DEF_NEW_SYM_GLO_SUP(___S_unlock_2d_buttons,___S_ws__sendframe__txt,___X33,495545544,___G_ws__sendframe__txt)
+___DEF_SUB_NSTR(___X34,8UL)
                ___NSTR8(119,115,95,115,116,97,114,116)
                ___NSTR0
-___DEF_NEW_SYM_GLO_SUP(___S_ws__sendframe__txt,___S_ws__start,___X29,227104956,___G_ws__start)
+___DEF_NEW_SYM_GLO_SUP(___S_ws__sendframe__txt,___S_ws__start,___X34,227104956,___G_ws__start)
 ___END_NEW_SYM_GLO(___S_ws__start,0)
 
 #endif

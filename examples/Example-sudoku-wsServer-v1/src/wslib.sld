@@ -1,10 +1,18 @@
+;(only (scheme write) display)
+;
+
 (define-library (wslib) 
   (namespace "")
 
     (export
-      grid1 grid2 grid3 nested-loop for let/ec deck->JSONString 
-      grid->JSONString check no-zeros-left? get_row_cells get_col_cells 
-      get_box_cells row_col->cell possible? is_between_inc? print-grid)
+      grid1	grid2		grid3
+      possible?	is_between_inc? print-grid
+      deck->JSONString
+      grid->JSONString
+      check
+      no-zeros-left?
+      get_row_cells get_col_cells 
+      get_box_cells row_col->cell )
 
 (begin
 
@@ -43,29 +51,6 @@
       '(0 0 0 0 0 0 0 0 0)
       '(0 0 0 0 0 0 0 0 0)
       '(0 0 0 0 0 0 0 0 0))))  
-
-
-(define-syntax nested-loop
-  (syntax-rules ()
-    ((_ l1 l1-start l1-end l2 l2-start l2-end body ...)
-         (for l1-start l1-end (lambda(l1)
-		    (for l2-start l2-end (lambda(l2)
-			       (begin
-				body ... ))))))))
-
-(define for (lambda (start end func)
-     (let loop ((index start))
-        (if (> index end) #t
-          (begin
-            (func index)
-            (loop (+ index 1)))))))
-				
-(define-syntax let/ec 
-  (syntax-rules ()
-    ((_ return body ...)
-     (call-with-current-continuation
-      (lambda (return)
-        body ...)))))
 
 (define (deck->JSONString deck)
     (let loop1 ((idx 0)(end (length deck))(str "["))  

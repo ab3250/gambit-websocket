@@ -8,8 +8,11 @@ c-declare-end
 (import
   (scheme base)
   (scheme write)
-  (gambit))
-  (include "wslib.sld")
+  (gambit)
+ ; (ablibs macrolib)
+  )
+ (include "wslib.sld")
+ (include "macrolib.sld")
 
 (define  ws_sendframe_txt (c-lambda (int char-string bool) int "ws_sendframe_txt"))
 
