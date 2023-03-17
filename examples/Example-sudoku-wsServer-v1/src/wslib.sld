@@ -5,10 +5,11 @@
   (namespace "")
 
     (export
-      grid1	grid2		grid3
-      possible?	is_between_inc? print-grid
-      deck->JSONString
-      grid->JSONString
+      grid1 grid2 grid3
+      possible?
+      is_between_inc?
+      print-grid
+      deck->JSONString grid->JSONString
       check
       no-zeros-left?
       get_row_cells get_col_cells 

@@ -8,12 +8,11 @@ c-declare-end
 (import
   (scheme base)
   (scheme write)
-  (gambit)
- ; (ablibs macrolib)
-  )
- (include "wslib.sld")
- (include "macrolib.sld")
+  (gambit))
 
+  (include "wslib.sld")
+  (include "wsmacrolib.sld")
+S
 (define  ws_sendframe_txt (c-lambda (int char-string bool) int "ws_sendframe_txt"))
 
 (define ws_start (c-lambda () void "ws_start" ))
@@ -54,10 +53,10 @@ c-declare-end
   (newline))
 
  (define (lock-buttons)
-  (call-with-output-file fifoOut write "{\"type\":\"lock\"}"))
+  (ws_sendframe_txt gblFd "{\"type\":\"lock\"}" #f))
 
 (define (unlock-buttons)
-  (call-with-output-file fifoOut write  "{\"type\":\"unlock\"}"))
+  (ws_sendframe_txt gblFd "{\"type\":\"unlock\"}" #f))
 
 (define-syntax lock
   (syntax-rules ()
